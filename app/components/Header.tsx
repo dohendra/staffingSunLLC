@@ -1,5 +1,6 @@
 import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
 import Link from 'next/link';
+import { gsap } from "gsap";
 
 export default function Header() {
   return (
