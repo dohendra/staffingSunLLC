@@ -1,51 +1,16 @@
 import { Box, Button, Grid, TextField, Typography, Card, CardContent, CardMedia } from '@mui/material';
 import HeroSection from '../components/HeroSection';  // Import your existing HeroSection
 
-const talents = [
-  {
-    name: 'Emil Yancy',
-    title: 'Front End Developer',
-    company: 'UK Leading Ecommerce Firm',
-    location: 'Manchester – Hybrid',
-    techStack: 'Front End Developer, React, ReactJS 18, React Hooks, Shopify platform, JavaScript, TypeScript, HTML5, CSS, UI, UX',
-    imageUrl: '/assets/emil.jpg',
-  },
-  {
-    name: 'Coty Robin',
-    title: 'Senior Recruiter',
-    company: 'UK Leading Ecommerce Firm',
-    location: 'Manchester – Hybrid',
-    techStack: 'Recruitment, Human Resources, Talent Acquisition, Employer Branding, Onboarding, Employee Relations',
-    imageUrl: '/assets/coty.jpg',
-  },
-  {
-    name: 'Missie Moira',
-    title: 'Back End Developer',
-    company: 'UK Leading Ecommerce Firm',
-    location: 'Manchester – Hybrid',
-    techStack: 'Node.js, Express, MongoDB, SQL, REST APIs, JavaScript, TypeScript, Docker, AWS',
-    imageUrl: '/assets/missie.jpg',
-  },
-  {
-    name: 'Presley Kiera',
-    title: 'Junior Recruiter',
-    company: 'UK Leading Ecommerce Firm',
-    location: 'Manchester – Hybrid',
-    techStack: 'Recruitment, Screening, Interviews, Talent Acquisition, Social Media Recruiting',
-    imageUrl: '/assets/presley.jpg',
-  },
-];
 
-export default function HireTalentsPage() {
+export default async function HireTalentsPage() {
+  const res= await fetch('http://localhost:5001/api/hire-talents');
+  const talents = await res.json();
   return (
     <Box sx={{ backgroundColor: '#f9f9f9', minHeight: '100vh' }}>
-      {/* Reuse the HeroSection component */}
       <HeroSection />
 
       <Box sx={{ maxWidth: '1200px', mx: 'auto', p: 4 }}>
-        {/* Search and Filters */}
         <Grid container spacing={4}>
-          {/* Sidebar Filters */}
           <Grid item xs={12} md={3}>
             <Box sx={{ backgroundColor: 'white', p: 3, borderRadius: 2 }}>
               <Typography variant="h6" fontWeight="bold" gutterBottom>
@@ -72,7 +37,6 @@ export default function HireTalentsPage() {
             </Box>
           </Grid>
 
-          {/* Main Content - Talent Cards */}
           <Grid item xs={12} md={9}>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
               <TextField
@@ -86,9 +50,8 @@ export default function HireTalentsPage() {
               </Button>
             </Box>
 
-            {/* List of Talents */}
             <Grid container spacing={4}>
-              {talents.map((talent, index) => (
+              {talents.map((talent :any , index: number) => (
                 <Grid item xs={12} key={index}>
                   <Card sx={{ display: 'flex', backgroundColor: 'white', borderRadius: 2 }}>
                     <CardMedia
